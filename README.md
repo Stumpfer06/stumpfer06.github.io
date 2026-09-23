@@ -34,3 +34,4 @@ repo's Settings → Pages, set "Build and deployment" → Source to
 - [ ] Fill in real email / LinkedIn in `src/components/Contact.tsx`
 - [ ] Replace the tagline in `src/components/Hero.tsx` if you want
 - [ ] Add real projects to `src/components/Projects.tsx` as they're built
+test
