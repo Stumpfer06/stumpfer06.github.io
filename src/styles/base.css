@@ -1,0 +1,162 @@
+/* Reset, band rhythm, and global accessibility rules. */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Full-bleed bands plus the rotated hero marker and the oversized
+     decorative numerals can poke past the viewport edge. */
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--navy);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--coral);
+  color: var(--cream);
+}
+
+/* ---------- Bands ----------
+   Every section is a full-bleed band: edge-to-edge background, content inset
+   only by the gutter. There is no centred content container anywhere. */
+
+.band {
+  width: 100%;
+  padding: var(--band-y) var(--gutter);
+  scroll-margin-top: var(--header-height);
+  position: relative;
+}
+
+/* Bands that manage their own horizontal padding (e.g. the project rows,
+   whose colour panels must reach the viewport edge). */
+.band-flush {
+  width: 100%;
+  padding: 0;
+  scroll-margin-top: var(--header-height);
+  position: relative;
+}
+
+/* Light bands: flip the text colour and the focus ring together. */
+.band-yellow {
+  background: var(--yellow);
+  color: var(--ink);
+  --focus-ring: var(--ink);
+}
+
+.band-coral {
+  background: var(--coral);
+  color: var(--ink);
+  --focus-ring: var(--ink);
+}
+
+.band-navy {
+  background: var(--navy);
+}
+
+.band-navy-2 {
+  background: var(--navy-2);
+}
+
+/* Small uppercase label that opens most bands. */
+.band-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  margin: 0 0 var(--space-5);
+}
+
+.band-title {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  margin: 0 0 var(--space-7);
+}
+
+/* ---------- Focus ---------- */
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Visually hidden until focused, so keyboard users can jump past the header
+   straight to the main content. */
+.skip-link {
+  position: fixed;
+  top: -6rem;
+  left: var(--space-4);
+  z-index: 100;
+  padding: var(--space-3) var(--space-5);
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: top var(--duration-base) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* ---------- Reduced motion ----------
+   Flattens transitions and stops every ambient animation. The marquee is
+   handled explicitly in components.css as well (belt and braces): a
+   permanently scrolling ticker is exactly what this setting exists to stop,
+   so it must not merely run faster. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

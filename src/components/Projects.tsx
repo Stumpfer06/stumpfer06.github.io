@@ -1,54 +1,38 @@
-type Project = {
-  title: string
-  description: string
-  href?: string
-  status: 'live' | 'in-progress' | 'planned'
-}
-
-// TODO: add real entries here as projects go live — this is deliberately
-// just a placeholder for now so the section isn't empty
-const projects: Project[] = [
-  {
-    title: 'This portfolio',
-    description: 'Built with React, TypeScript and Vite, deployed with GitHub Actions.',
-    href: 'https://github.com/stumpfer06/stumpfer06.github.io',
-    status: 'live',
-  },
-  {
-    title: 'Job Application Tracker API',
-    description: 'A Spring Boot REST API for tracking my own job search — companies, statuses, deadlines.',
-    status: 'planned',
-  },
-]
-
-const statusLabel: Record<Project['status'], string> = {
-  live: 'Live',
-  'in-progress': 'In progress',
-  planned: 'Planned',
-}
+import { projects, sectionTitles, statusLabel, ui } from '../data/site'
 
 export default function Projects() {
   return (
-    <section id="projects">
-      <h2>Projects</h2>
-      <div className="projects-grid">
-        {projects.map((project) => (
-          <article className="project-card" key={project.title}>
-            <div className="project-card-header">
-              <h3>{project.title}</h3>
-              <span className={`status status-${project.status}`}>
-                {statusLabel[project.status]}
-              </span>
-            </div>
+    <section id="projects" className="band-flush band-navy">
+      <div className="projects-head">
+        <h2 className="band-title">{sectionTitles.projects}</h2>
+      </div>
+      {projects.map((project, index) => (
+        <article
+          className={`project-row${index % 2 === 1 ? ' is-flipped' : ''}`}
+          key={project.title}
+        >
+          <div className="project-panel" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')}
+          </div>
+          <div className="project-info">
+            <p className={`project-status is-${project.status}`}>
+              {statusLabel[project.status]}
+            </p>
+            <h3>{project.title}</h3>
             <p>{project.description}</p>
             {project.href && (
-              <a href={project.href} target="_blank" rel="noreferrer">
-                View on GitHub →
+              <a
+                className="project-link"
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {ui.projectLink} →
               </a>
             )}
-          </article>
-        ))}
-      </div>
+          </div>
+        </article>
+      ))}
     </section>
   )
 }

@@ -1,15 +1,15 @@
+import { about, sectionTitles } from '../data/site'
+
 export default function About() {
   return (
-    <section id="about">
-      <h2>About</h2>
-      {/* TODO: replace with your own words — a couple of sentences on your
-          background and what kind of engineering work you're looking for */}
-      <p>
-        I finished IT-HTL Ybbs in June 2025 and completed a voluntary social
-        year afterward. Now I'm job hunting for software engineering roles
-        while building practice projects to sharpen my web/full-stack and
-        backend skills — including learning Java and Spring Boot in depth.
-      </p>
+    <section id="about" className="band band-coral about">
+      <div>
+        <h2 className="band-label">{sectionTitles.about}</h2>
+        <p>{about.paragraph}</p>
+      </div>
+      <span className="about-quote" aria-hidden="true">
+        „
+      </span>
     </section>
   )
 }

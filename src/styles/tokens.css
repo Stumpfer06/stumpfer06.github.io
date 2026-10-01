@@ -1,0 +1,82 @@
+/* Design tokens — "Bold Bands".
+   Fixed dark navy identity with three flat accent bands (yellow / coral /
+   mint). No light-mode variant: the band colours *are* the brand, and a
+   light inversion would change the concept rather than adapt it. */
+
+:root {
+  /* ---------- Palette ---------- */
+  --navy: #12122a;
+  --navy-2: #191a3a;
+  --cream: #faf6ec;
+  --yellow: #f4d35e;
+  --coral: #ee6c4d;
+  --mint: #8fe3c4;
+  --ink: #14121f;
+
+  /* Cream at alphas that still clear WCAG AA on navy (4.5:1 for body text):
+     .60 = 6.65:1, .72 = 9.10:1, .82 = 11.5:1. Anything below .55 fails. */
+  --cream-80: rgba(250, 246, 236, 0.82);
+  --cream-70: rgba(250, 246, 236, 0.72);
+  --cream-60: rgba(250, 246, 236, 0.62);
+  --hairline: rgba(250, 246, 236, 0.16);
+  --hairline-strong: rgba(250, 246, 236, 0.3);
+
+  /* Ink at alpha on the light bands: .82 clears AA on yellow (8.2:1) and
+     mint (8.0:1). On coral, only full-strength ink is used (6.06:1). */
+  --ink-80: rgba(20, 18, 31, 0.82);
+  --ink-hairline: rgba(20, 18, 31, 0.22);
+
+  /* Per-band focus ring colour — overridden on the light bands so the ring
+     is always visible against its own background. */
+  --focus-ring: var(--mint);
+
+  color-scheme: dark;
+
+  /* ---------- Layout ---------- */
+  /* Bands are full-bleed; the gutter is the only horizontal inset. */
+  --gutter: clamp(20px, 5vw, 72px);
+  --band-y: clamp(64px, 8vw, 112px);
+  --band-y-tight: clamp(44px, 5vw, 72px);
+  --header-height: 5.5rem;
+
+  /* ---------- Spacing ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  /* ---------- Type ---------- */
+  --font-display: 'Unbounded', 'Trebuchet MS', sans-serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Unbounded is a wide face, so display sizes stay a notch under what a
+     normal grotesk would take at the same measure. */
+  --fs-display: clamp(2.05rem, 6.2vw, 5.25rem);
+  --fs-display-lg: clamp(2.4rem, 8vw, 6rem);
+  --fs-numeral: clamp(5.5rem, 15vw, 15rem);
+  --fs-h2: clamp(1.75rem, 3.8vw, 2.75rem);
+  --fs-h3: clamp(1.35rem, 2.6vw, 2.15rem);
+  --fs-lead: clamp(1.15rem, 2.2vw, 1.65rem);
+  --fs-body-lg: clamp(1rem, 0.96rem + 0.3vw, 1.1rem);
+  --fs-body: 0.95rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.78rem;
+  --tracking-label: 0.08em;
+
+  /* ---------- Shape ---------- */
+  --radius-pill: 999px;
+  --radius-sm: 6px;
+
+  /* ---------- Motion ----------
+     Bold Bands is deliberately snappy: short, mostly-transform transitions.
+     No ambient/idle motion except the marquee (which stops under
+     prefers-reduced-motion). */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.3, 1);
+  --duration-fast: 0.15s;
+  --duration-base: 0.22s;
+  --marquee-duration: 28s;
+}

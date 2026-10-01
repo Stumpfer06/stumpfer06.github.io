@@ -1,14 +1,30 @@
+import { contactIntro, contactLinks, resumeHref, sectionTitles, ui } from '../data/site'
+
 export default function Contact() {
   return (
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Open to software engineering roles — feel free to reach out.</p>
+    <section id="contact" className="band band-yellow contact">
+      <h2>{sectionTitles.contact}</h2>
       <ul className="contact-links">
-        {/* TODO: fill in your real email + LinkedIn (or remove the ones you don't want listed) */}
-        <li><a href="mailto:you@example.com">you@example.com</a></li>
-        <li><a href="https://github.com/stumpfer06" target="_blank" rel="noreferrer">github.com/stumpfer06</a></li>
-        <li><a href="#" target="_blank" rel="noreferrer">LinkedIn (add your link)</a></li>
+        {contactLinks.map((link) => (
+          <li key={link.href}>
+            <a
+              href={link.href}
+              target={link.external ? '_blank' : undefined}
+              rel={link.external ? 'noreferrer' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
+      <p className="contact-intro">{contactIntro}</p>
+      {resumeHref && (
+        <div className="contact-actions">
+          <a className="button button-ink" href={resumeHref}>
+            {ui.resumeLabel}
+          </a>
+        </div>
+      )}
     </section>
   )
 }
