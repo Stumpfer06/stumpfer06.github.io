@@ -9,7 +9,7 @@ export default function Projects() {
       {projects.map((project, index) => (
         <article
           className={`project-row${index % 2 === 1 ? ' is-flipped' : ''}`}
-          key={project.title}
+          key={project.slug}
         >
           <div className="project-panel" aria-hidden="true">
             {String(index + 1).padStart(2, '0')}
@@ -20,16 +20,9 @@ export default function Projects() {
             </p>
             <h3>{project.title}</h3>
             <p>{project.description}</p>
-            {project.href && (
-              <a
-                className="project-link"
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {ui.projectLink} →
-              </a>
-            )}
+            <a className="project-link" href={`#/projekte/${project.slug}`}>
+              {ui.projectLink} →
+            </a>
           </div>
         </article>
       ))}
