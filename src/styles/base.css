@@ -1,13 +1,9 @@
-/* Reset, band rhythm, and global accessibility rules. */
-
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  /* Full-bleed bands plus the rotated hero marker and the oversized
-     decorative numerals can poke past the viewport edge. */
   overflow-x: hidden;
 }
 
@@ -54,10 +50,6 @@ a {
   color: var(--cream);
 }
 
-/* ---------- Bands ----------
-   Every section is a full-bleed band: edge-to-edge background, content inset
-   only by the gutter. There is no centred content container anywhere. */
-
 .band {
   width: 100%;
   padding: var(--band-y) var(--gutter);
@@ -65,8 +57,6 @@ a {
   position: relative;
 }
 
-/* Bands that manage their own horizontal padding (e.g. the project rows,
-   whose colour panels must reach the viewport edge). */
 .band-flush {
   width: 100%;
   padding: 0;
@@ -74,7 +64,6 @@ a {
   position: relative;
 }
 
-/* Light bands: flip the text colour and the focus ring together. */
 .band-yellow {
   background: var(--yellow);
   color: var(--ink);
@@ -91,11 +80,6 @@ a {
   background: var(--navy);
 }
 
-.band-navy-2 {
-  background: var(--navy-2);
-}
-
-/* Small uppercase label that opens most bands. */
 .band-label {
   font-family: var(--font-display);
   font-weight: 800;
@@ -111,16 +95,12 @@ a {
   margin: 0 0 var(--space-7);
 }
 
-/* ---------- Focus ---------- */
-
 :focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
 
-/* Visually hidden until focused, so keyboard users can jump past the header
-   straight to the main content. */
 .skip-link {
   position: fixed;
   top: -6rem;
@@ -141,11 +121,6 @@ a {
   top: var(--space-4);
 }
 
-/* ---------- Reduced motion ----------
-   Flattens transitions and stops every ambient animation. The marquee is
-   handled explicitly in components.css as well (belt and braces): a
-   permanently scrolling ticker is exactly what this setting exists to stop,
-   so it must not merely run faster. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

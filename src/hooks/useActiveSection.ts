@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
 
-/**
- * Tracks which section id is currently in view (for the sticky nav's active
- * indicator) and whether the page has scrolled past a small threshold (for
- * the header's blur/shrink transition).
- */
 export function useActiveSection(sectionIds: string[], scrollThreshold = 24) {
   const [activeId, setActiveId] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
@@ -25,12 +20,6 @@ export function useActiveSection(sectionIds: string[], scrollThreshold = 24) {
 
     if (sections.length === 0) return
 
-    // IntersectionObserver callbacks only report entries whose state changed
-    // in that batch, so we track everything currently intersecting here to
-    // correctly pick the topmost one when multiple sections overlap the band.
-    // We only store the element (not the entry) because `boundingClientRect`
-    // on an entry is a stale snapshot from whenever it last fired — we
-    // re-measure live at decision time instead.
     const intersecting = new Map<string, Element>()
 
     const observer = new IntersectionObserver(

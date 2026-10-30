@@ -20,7 +20,7 @@ export default function Projects() {
             </p>
             <h3>{project.title}</h3>
             <p>{project.description}</p>
-            <a className="project-link" href={`#/projekte/${project.slug}`}>
+            <a className="project-link" href={`#/projects/${project.slug}`}>
               {ui.projectLink} →
             </a>
           </div>

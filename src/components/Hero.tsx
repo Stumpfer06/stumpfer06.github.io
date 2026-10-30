@@ -10,11 +10,6 @@ function initials(name: string) {
     .toUpperCase()
 }
 
-/**
- * Splits the heading around `hero.highlight` so that word can get the yellow
- * marker treatment. Falls back to the plain heading if the highlight isn't
- * found, so editing the copy can never break the render.
- */
 function splitHeading(heading: string, highlight: string) {
   const index = heading.indexOf(highlight)
   if (!highlight || index === -1) return null

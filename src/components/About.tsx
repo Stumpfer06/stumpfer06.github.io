@@ -8,7 +8,7 @@ export default function About() {
         <p>{about.paragraph}</p>
       </div>
       <span className="about-quote" aria-hidden="true">
-        „
+        “
       </span>
     </section>
   )
